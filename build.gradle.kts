@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.3.5"
     id("io.spring.dependency-management") version "1.1.6"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.6.10"
 }
 
 group = "com.hhplus.commerce"
@@ -35,12 +36,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-cache")
 
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-    testImplementation("org.assertj:assertj-core:3.19.0")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
-    testImplementation("org.mockito:mockito-inline:3.6.0")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter
     implementation("org.redisson:redisson-spring-boot-starter:3.29.0")
@@ -48,6 +43,18 @@ dependencies {
     implementation("io.micrometer:micrometer-registry-prometheus")
 
     runtimeOnly("com.h2database:h2")
+
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.assertj:assertj-core:3.19.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+
+    testImplementation("io.kotest:kotest-runner-junit5:5.4.2") // kotlin junit 처럼 쓸 수 있는 Spec 들이 정의 됨
+    testImplementation("io.kotest:kotest-assertions-core:5.4.2") // shouldBe... etc 와같이 Assertions 의 기능을 제공
+    testImplementation("io.kotest:kotest-framework-datatest:5.4.2") // parameterized test 제공
+
+    testImplementation("org.mockito:mockito-inline:3.6.0")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
