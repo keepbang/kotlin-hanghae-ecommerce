@@ -40,7 +40,7 @@ class UserController(
     @PostMapping
     fun save(
         @RequestBody request: UserCreateRequest,
-    ): ResponseEntity<UserResponse?> {
+    ): ResponseEntity<UserResponse> {
         return ResponseEntity(
             userCommand.save(request),
             HttpStatus.OK

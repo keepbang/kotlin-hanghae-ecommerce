@@ -7,17 +7,27 @@ import java.util.*
 @Table(name = "users")
 data class User(
     @Column(name = "user_key")
-    val userKey: UUID,
+    internal val userKey: UUID,
     @Column(name = "name", length = 100)
-    val name: String,
-    @Column
-    val address: String,
+    private var _name: String,
+    @Column(name = "address")
+    private var _address: String
+) {
+
+    val name: String
+        get() = _name
+
+    val address: String
+        get() = _address
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq_id")
-    val id: Long?,
-) {
+    internal val id: Long? = null
 
-    constructor() : this(UUID.randomUUID(), "", "", null)
-    constructor(userKey: UUID, name: String, address: String) : this(userKey, name, address, null)
+
+    fun update(name: String, address: String) {
+        this._name = name
+        this._address = address
+    }
 }
