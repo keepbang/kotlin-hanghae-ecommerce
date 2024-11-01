@@ -13,7 +13,7 @@ import java.util.*
 class UserService(
     private val userRepository: UserRepository,
 ): UserQuery, UserCommand {
-    override fun getUserIdByUserKey(userKey: UUID): Long {
+    override fun getUserIdByUserKey(userKey: UUID): String {
         return userRepository.findByUserKeyOrThrows(userKey).id!!
     }
 
@@ -29,6 +29,7 @@ class UserService(
 
     }
 
+    @Transactional
     override fun save(request: UserCreateRequest): UserResponse {
         return userRepository.save(
             User(

@@ -1,5 +1,6 @@
 package com.hhplus.commerce.user.domain
 
+import com.hhplus.commerce.common.domain.CustomAutoId
 import jakarta.persistence.*
 import java.util.*
 
@@ -12,18 +13,13 @@ data class User(
     private var _name: String,
     @Column(name = "address")
     private var _address: String
-) {
+): CustomAutoId() {
 
     val name: String
         get() = _name
 
     val address: String
         get() = _address
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "seq_id")
-    internal val id: Long? = null
 
 
     fun update(name: String, address: String) {

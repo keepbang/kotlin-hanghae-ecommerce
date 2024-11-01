@@ -13,6 +13,6 @@ import java.util.*
  */
 
 interface UserQuery {
-    fun getUserIdByUserKey(userKey: UUID): Long
+    fun getUserIdByUserKey(userKey: UUID): String
     fun findByUserKey(userKey: UUID): UserResponse
 }

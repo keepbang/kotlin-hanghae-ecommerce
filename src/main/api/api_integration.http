@@ -1,0 +1,9 @@
+### 사용자 저장
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "keepbang",
+  "address": "서울"
+}
+
