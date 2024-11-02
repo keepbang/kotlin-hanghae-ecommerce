@@ -24,28 +24,26 @@ class UserIntegrationTest(
     var userCommand: UserCommand,
     @MockkBean
     var userQuery: UserQuery
-) : FunSpec() {
+) : FunSpec({
+    test("Post /users") {
 
-    init {
-        test("Post /users") {
+        // given
+        val response = UserResponse(UUID.randomUUID(), "testUserName", "testAddress")
+        every { userCommand.save(any()) } returns response
 
-            // given
-            val response = UserResponse(UUID.randomUUID(), "testUserName", "testAddress")
-            every { userCommand.save(any()) } returns response
-
-            // when
-            val request = UserCreateRequest("testUserName", "testAddress")
-            mockMvc.post("/users")
-            mockMvc.post("/users") {
-                content = objectMapper.writeValueAsString(request)
-                contentType = MediaType.APPLICATION_JSON
-                accept = MediaType.APPLICATION_JSON
-            }
+        // when
+        val request = UserCreateRequest("testUserName", "testAddress")
+        mockMvc.post("/users")
+        mockMvc.post("/users") {
+            content = objectMapper.writeValueAsString(request)
+            contentType = MediaType.APPLICATION_JSON
+            accept = MediaType.APPLICATION_JSON
+        }
             .andExpect {
                 status { isOk() }
                 jsonPath("\$.name") { value("testUserName") }
                 jsonPath("\$.address") { value("testAddress") }
             }.andDo { print() }
-        }
     }
+}) {
 }
