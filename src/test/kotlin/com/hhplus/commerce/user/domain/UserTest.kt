@@ -8,7 +8,10 @@ import java.util.*
 class UserTest: StringSpec({
     "User 생성 테스트" {
         shouldNotThrow<Exception> {
-            val user = User(UUID.randomUUID(), "testUser", "testAddress")
+            val user = User(
+                userKey = UUID.randomUUID(),
+                name = "testUser",
+                address = "testAddress")
             user.name shouldBe "testUser"
             user.address shouldBe "testAddress"
         }

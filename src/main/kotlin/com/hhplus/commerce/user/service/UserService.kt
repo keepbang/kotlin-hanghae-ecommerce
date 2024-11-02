@@ -33,9 +33,9 @@ class UserService(
     override fun save(request: UserCreateRequest): UserResponse {
         return userRepository.save(
             User(
-                UUID.randomUUID(),
                 request.name,
-                request.address
+                request.address,
+                UUID.randomUUID(),
             )
         ).let {user ->
             UserResponse(

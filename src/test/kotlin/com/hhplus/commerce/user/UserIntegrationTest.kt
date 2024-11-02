@@ -26,10 +26,6 @@ class UserIntegrationTest(
     var userQuery: UserQuery
 ) : FunSpec() {
 
-
-
-
-
     init {
         test("Post /users") {
 

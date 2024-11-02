@@ -6,24 +6,24 @@ import java.util.*
 
 @Entity
 @Table(name = "users")
-data class User(
+class User(
+    name: String,
+    address: String,
     @Column(name = "user_key")
-    internal val userKey: UUID,
-    @Column(name = "name", length = 100)
-    private var _name: String,
-    @Column(name = "address")
-    private var _address: String
+    internal val userKey: UUID = UUID.randomUUID(),
 ): CustomAutoId() {
 
-    val name: String
-        get() = _name
+    @Column(name = "name", length = 100)
+    var name: String = name
+        protected set
 
-    val address: String
-        get() = _address
+    @Column(name = "address")
+    var address: String = address
+        protected set
 
 
     fun update(name: String, address: String) {
-        this._name = name
-        this._address = address
+        this.name = name
+        this.address = address
     }
 }

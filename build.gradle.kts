@@ -1,10 +1,13 @@
+import org.jetbrains.kotlin.gradle.model.AllOpen
+
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "2.0.21"
     kotlin("plugin.jpa") version "2.0.21"
+    kotlin("plugin.allopen") version "2.0.21"
+    kotlin("plugin.noarg") version "2.0.21"
     id("org.springframework.boot") version "3.3.5"
     id("io.spring.dependency-management") version "1.1.6"
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.6.10"
 }
 
 group = "com.hhplus.commerce"
@@ -18,6 +21,18 @@ java {
 
 repositories {
     mavenCentral()
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
 }
 
 dependencies {
@@ -57,7 +72,6 @@ dependencies {
 
     testImplementation("org.mockito:mockito-inline:3.6.0")
 
-    testImplementation("io.mockk:mockk:1.12.0")
     testImplementation("com.ninja-squad:springmockk:3.1.0") // for MockkBean
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

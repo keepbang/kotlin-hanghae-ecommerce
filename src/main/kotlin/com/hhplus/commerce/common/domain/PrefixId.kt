@@ -1,12 +1,11 @@
 package com.hhplus.commerce.common.domain
 
 import org.hibernate.annotations.IdGeneratorType
-import org.hibernate.annotations.Parameter
 
-@IdGeneratorType(IdGenerator::class)
+@IdGeneratorType(PrefixIdGenerator::class)
 @Target(AnnotationTarget.FIELD, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class CustomIdGenerator(
+annotation class PrefixId(
     val name: String,
     val prefix: String = ""
 )
