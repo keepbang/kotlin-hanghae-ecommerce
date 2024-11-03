@@ -2,10 +2,10 @@ import org.jetbrains.kotlin.gradle.model.AllOpen
 
 plugins {
     kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "2.0.21"
-    kotlin("plugin.jpa") version "2.0.21"
-    kotlin("plugin.allopen") version "2.0.21"
-    kotlin("plugin.noarg") version "2.0.21"
+    kotlin("plugin.spring") version "1.5.31"
+    kotlin("plugin.jpa") version "1.5.31"
+    kotlin("plugin.allopen") version "1.5.31"
+    kotlin("plugin.noarg") version "1.5.31"
     id("org.springframework.boot") version "3.3.5"
     id("io.spring.dependency-management") version "1.1.6"
 }
@@ -60,24 +60,20 @@ dependencies {
 
     runtimeOnly("com.h2database:h2")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    // JUnit 관련 의존성
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+
+    // Kotest 관련 의존성 - 모두 Kotest 5.x 버전으로 통일
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.5.0")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.0")
+
+    // Mockk 및 Mockito 의존성
     testImplementation("io.mockk:mockk:1.12.4")
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.4.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.4.2")
-
-
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-//    testImplementation("org.assertj:assertj-core:3.19.0")
-//    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
-//
-//    testImplementation("io.kotest:kotest-runner-junit5:5.4.2") // kotlin junit 처럼 쓸 수 있는 Spec 들이 정의 됨
-//    testImplementation("io.kotest:kotest-assertions-core:5.4.2") // shouldBe... etc 와같이 Assertions 의 기능을 제공
+    testImplementation("com.ninja-squad:springmockk:3.1.0") // Spring에서 Mockk 사용을 위한 라이브러리
 
-    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.3.0")
-
-    testImplementation("com.ninja-squad:springmockk:3.1.0") // for MockkBean
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
