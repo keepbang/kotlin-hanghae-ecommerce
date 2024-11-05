@@ -12,5 +12,5 @@ abstract class CustomAutoId(
         name = "prefix_id_generator",
         prefix = "P"
     )
-    internal val id: String? = null
+    internal val id: Long? = null
 )
